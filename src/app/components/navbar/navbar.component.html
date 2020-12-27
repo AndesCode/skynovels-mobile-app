@@ -1,0 +1,65 @@
+<ion-toolbar>
+    <div class="skn-logo" routerLink=""></div>
+    <ion-buttons slot="primary">
+        <ion-button (click)="toggleMenu()">
+            <ion-icon slot="icon-only" name="menu" class="mainMenuIcon"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
+<ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+        <ion-toolbar color="primary" style="padding: 0px 0.5em;" mode="ios">
+            <img src="../../../assets/img/008 - SkyNovels V.1/logo/1x/simbolo_azules.png" height="30">
+            <ion-title style="color: black!important;">Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="noScroll">
+        <ion-list>
+            <ion-item routerLink="" (click)="toggleMenu();">
+                <ion-icon name="home-outline" class="mainMenuIcon" class="mainMenuIcon"></ion-icon>
+                <ion-label routerLink="">Inicio</ion-label>
+            </ion-item>
+            <ion-item routerLink="novelas" (click)="toggleMenu();">
+                <ion-icon name="book-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label routerLink="novelas" routerLinkActive="nav-link-selected">Novelas</ion-label>
+            </ion-item>
+            <ion-item *ngIf="us.userIsLoged()">
+                <ion-icon name="star-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Lista de lectura</ion-label>
+            </ion-item>
+            <ion-item *ngIf="us.userIsLoged()">
+                <ion-icon name="person-circle-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Perfil</ion-label>
+            </ion-item>
+            <ion-item *ngIf="us.userIsEditor()">
+                <ion-icon name="pencil-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Mis novelas</ion-label>
+            </ion-item>
+            <ion-item *ngIf="!us.userIsLoged()" (click)="toggleMenu(); presentModal(loginRegisterComponent, false)">
+                <ion-icon name="happy-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Iniciar Sesión</ion-label>
+            </ion-item>
+            <ion-item *ngIf="!us.userIsLoged()" (click)="toggleMenu(); presentModal(loginRegisterComponent, true)">
+                <ion-icon name="person-add-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Registrarse</ion-label>
+            </ion-item>
+            <ion-item *ngIf="this.as.userIsAdmin()">
+                <ion-icon name="settings-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Panel de control</ion-label>
+            </ion-item>
+            <ion-item *ngIf="us.userIsEditor()">
+                <ion-icon name="mail-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Invitaciones</ion-label>
+            </ion-item>
+            <ion-item *ngIf="us.userIsLoged()" (click)="logout()">
+                <ion-icon name="close-circle-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Cerrar sesión</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="moon-outline" class="mainMenuIcon"></ion-icon>
+                <ion-label>Modo noche</ion-label>
+                <ion-toggle [(ngModel)]="themeToggled" (ionChange)="toggleTheme()"></ion-toggle>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>

@@ -1,8 +1,9 @@
 {
-  "name": "SkynovelsMobileApp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular",
-  "id": "7f707fa4"
+    "name": "mobileApp",
+    "integrations": {},
+    "type": "angular",
+    "proxies": [{
+        "path": "/api",
+        "proxyUrl": "http://localhost:3000/api"
+    }]
 }

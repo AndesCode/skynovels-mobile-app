@@ -1,0 +1,39 @@
+// navigation grid
+$desktop: 1152px;
+$tablet: 680px;
+$mobile: 679px;
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$tablet}) and (max-width: #{$desktop - 1}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+$breakpoints: ( mobile: 0px, tablet: 680px, desktop: 1152px);
+@mixin plus-media($keys...) {
+    @each $key in $keys {
+        @media (min-width: map-get($breakpoints, $key)) {
+            @content
+        }
+    }
+}
+
+;
+@mixin subtract-media($keys...) {
+    @each $key in $keys {
+        @media (max-width: map-get($breakpoints, $key) - 1) {
+            @content
+        }
+    }
+}

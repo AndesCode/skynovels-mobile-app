@@ -1,0 +1,99 @@
+@import "../../common.scss";
+ion-icon {
+    margin: 0px 10px 1px 0px;
+}
+
+.skn-logo {
+    width: 142px;
+    height: 36px;
+    margin-left: 14px;
+    margin-top: 5px;
+    margin-bottom: 2px;
+    background-size: 100% 100%;
+}
+
+.login-hide-pass-button {
+    width: 30px;
+    height: 28px;
+}
+
+.skn-content {
+    padding: 4px;
+    height: 100%;
+    margin: auto 2%;
+    display: grid;
+    grid-template-columns: 11em auto;
+    grid-template-rows: 100%;
+    grid-template-areas: "logo links";
+}
+
+.skn-nav-links {
+    grid-area: links;
+    text-align: right;
+    display: flex;
+    justify-self: right;
+    width: auto;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.skn-nav-link {
+    margin: 10px 0px;
+    a,
+    div {
+        white-space: nowrap;
+    }
+}
+
+.black {
+    color: black !important;
+}
+
+.nav-link {
+    user-select: none;
+    cursor: pointer;
+}
+
+.skn-register-form-conditions-check-container {
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 0.75rem;
+}
+
+.skn-login {
+    text-align: center;
+    width: 73.5vw;
+    max-width: 25em;
+    .skn-login-logo {
+        height: 2.9em;
+        width: 100%;
+        display: flex;
+        .skn-login-logo-image {
+            margin: auto;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-size: 100% 100%;
+        }
+    }
+    .skn-login-form {
+        padding: 0px 5%;
+    }
+    .skn-login-button {
+        text-align: center;
+        ion-button {
+            width: 13em;
+        }
+    }
+    .skn-login-switcher {
+        margin-top: 7px;
+        p {
+            margin: 0 0 8px;
+        }
+    }
+    /*.skn-mat-label-center /deep/ .mat-form-field-label {
+        text-align: center!important;
+    }*/
+    .skn-invitation-card {
+        max-width: 400px;
+    }
+}

@@ -1,0 +1,59 @@
+ion-content {
+    --padding-bottom: 0px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+}
+
+.skn-logo {
+    grid-area: logo;
+    margin-top: 12px;
+    margin-bottom: 2px;
+    background-size: 100% 100%;
+}
+
+.skn-register-form-conditions-check-container {
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 0.75rem;
+}
+
+.skn-login {
+    text-align: center;
+    width: 93.5vw;
+    max-width: 25em;
+    margin: auto;
+    .skn-login-logo {
+        height: 2.9em;
+        width: 100%;
+        display: flex;
+        .skn-login-logo-image {
+            margin: auto;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-size: 100% 100%;
+        }
+    }
+    .skn-login-form {
+        padding: 0px 5%;
+    }
+    .skn-login-button {
+        height: 52.8px;
+        text-align: center;
+        ion-button {
+            width: 13em;
+        }
+    }
+    .skn-login-switcher {
+        margin-top: 7px;
+        p {
+            margin: 0 0 8px;
+        }
+    }
+    /*.skn-mat-label-center /deep/ .mat-form-field-label {
+        text-align: center!important;
+    }*/
+    .skn-invitation-card {
+        max-width: 400px;
+    }
+}

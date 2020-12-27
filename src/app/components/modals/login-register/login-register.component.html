@@ -1,0 +1,102 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-title mode="md">{{title}}</ion-title>
+        <div class="skn-login-logo-image"></div>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">Cerrar</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="noScroll">
+    <div class="skn-login">
+        <div class="skn-login-logo">
+            <div class="skn-login-logo-image"></div>
+        </div>
+        <div class="skn-login-form" *ngIf="currentForm === 'login'" (keyup.enter)="login()">
+            <form [formGroup]="loginForm">
+                <mat-form-field class="w-100 skn-mat-label-center">
+                    <mat-label>Usuario o correo electronico</mat-label>
+                    <input matInput formControlName="user_login" cdkFocusInitial autocomplete="off">
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="user_pass" autocomplete="off">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="login-hide-pass-button">
+                <ion-icon name="{{hide ? 'eye-off-outline' : 'eye-outline'}}" style="margin: 0px; font-size: 25px;"></ion-icon>
+                </button>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="skn-login-form" *ngIf="currentForm === 'register'">
+            <h2 *ngIf="registerCompleted" style="color: green;">
+                ¡Registro completado!
+            </h2>
+            <p *ngIf="registerCompleted">
+                Comprueba tu correo electronico para confirmar tu registro.
+            </p>
+            <form [formGroup]="registerForm" *ngIf="!registerCompleted">
+                <mat-form-field class="w-100 skn-mat-label-center">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="user_login" cdkFocusInitial autocomplete="off">
+                    <mat-error *ngIf="registerForm.get('user_login').hasError('pattern')">Invalido</mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100 skn-mat-label-center">
+                    <mat-label>Correo electronico</mat-label>
+                    <input matInput formControlName="user_email" autocomplete="off">
+                    <mat-error *ngIf="registerForm.get('user_email').hasError('email')">Invalido</mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="user_pass" autocomplete="off">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="login-hide-pass-button">
+                    <ion-icon name="{{hide ? 'eye-off-outline' : 'eye-outline'}}" style="margin: 0px; font-size: 25px;"></ion-icon>
+                    </button>
+                    <mat-error *ngIf="registerForm.get('user_pass').hasError('pattern')">Contraseña invalida</mat-error>
+                </mat-form-field>
+                <div class="d-flex skn-register-form-conditions-check-container">
+                    <mat-checkbox color="primary" style="margin-right: 5px;" [(ngModel)]="termsAndConditionsAccepted" [ngModelOptions]="{standalone: true}"></mat-checkbox>
+                    <p style="font-size: 0.75rem; margin: 0px;">he leído y acepto el <span class="skn-link" style="text-decoration: underline!important;">acuerdo de terminos y condiciones.</span></p>
+                </div>
+
+                <div class="text-left" style="font-size: 0.75rem;">
+                    <p style="margin: 0 0 2px;">La contraseña debe tener:</p>
+                    <ul style="padding-inline-start: 20px; margin-bottom: 0.4rem;">
+                        <li>De 8 a 16 caracteres</li>
+                        <li>Al menos una letra mayuscula</li>
+                        <li>Al menos una letra minuscula</li>
+                        <li>Al menos un numero</li>
+                        <li>Al menos un caracter especial @$_-!%*?&.,"'#}()¡¿</li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <div class="skn-login-form" *ngIf="currentForm === 'passwordRecovery'">
+            <h2 *ngIf="passwordRecoveryCompleted" style="color: green;">
+                ¡Solicitud enviada!
+            </h2>
+            <p *ngIf="passwordRecoveryCompleted">
+                Comprueba tu correo electronico para proceder con el cambio de contraseña.
+            </p>
+            <form [formGroup]="passwordRecoveryForm" *ngIf="!passwordRecoveryCompleted">
+                <mat-form-field class="w-100 skn-mat-label-center">
+                    <mat-label>Correo electronico</mat-label>
+                    <input matInput formControlName="user_email" autocomplete="off">
+                    <mat-error *ngIf="passwordRecoveryForm.get('user_email').hasError('email')">Invalido</mat-error>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="skn-login-button" *ngIf="!loginFormLoading">
+            <ion-button color="primary" (click)="login()" *ngIf="currentForm === 'login'" [disabled]="loginForm.invalid || loginFormLoading">Iniciar sesión</ion-button>
+            <ion-button color="primary" (click)="register()" *ngIf="currentForm === 'register' && !registerCompleted" [disabled]="registerForm.invalid || loginFormLoading || !termsAndConditionsAccepted">Registrarse</ion-button>
+            <ion-button color="primary" (click)="passwordRecovery()" *ngIf="currentForm === 'passwordRecovery' && !passwordRecoveryCompleted" [disabled]="passwordRecoveryForm.invalid || loginFormLoading">Enviar correo</ion-button>
+        </div>
+        <div class="skn-loading" style="height: 52.8px; margin: 0px;" *ngIf="loginFormLoading">
+            <ion-spinner></ion-spinner>
+        </div>
+        <div class="skn-login-switcher">
+            <p class="skn-link" *ngIf="currentForm === 'login'" (click)="swichtTab('passwordRecovery', 'Recuperar contraseña')" style="font-size: 0.8rem;">¿Olvidaste tu contraseña?</p>
+            <p class="skn-link" *ngIf="currentForm === 'login' && !registerCompleted" (click)="swichtTab('register', 'Registrarse')" style="font-size: 0.8rem;">¿No tienes cuenta? ¡Registrate aquí!</p>
+            <p class="skn-link" *ngIf="currentForm === 'register' || currentForm === 'passwordRecovery'" (click)="swichtTab('login', 'Iniciar sesión')" style="font-size: 0.8rem;">Regresar a inicio</p>
+        </div>
+    </div>
+</ion-content>
