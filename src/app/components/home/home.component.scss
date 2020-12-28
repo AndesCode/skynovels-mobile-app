@@ -28,19 +28,23 @@ h3 {
 
 .skn-home-swiper {
     border-radius: 35px;
+    ion-slides {
+        border-radius: 35px;
+    }
 }
 
 .skn-swiper-novel-slide {
-    height: 21rem;
+    height: 23rem;
     padding: 0.4rem;
+    text-align: initial;
     .skn-swiper-novel-slide-content {
-        max-width: 175px;
+        max-width: 157.22px;
         margin: auto;
         padding: 0.4rem;
         border-radius: 10px;
         height: 100%;
         .skn-swiper-novel-slide-img-container {
-            height: 7rem;
+            height: 15rem;
             width: 100%;
             img {
                 width: 100%;
@@ -56,7 +60,7 @@ h3 {
     }
     @include mobile {
         font-size: 0.7rem;
-        height: 14rem;
+        height: 12.5rem;
     }
 }
 

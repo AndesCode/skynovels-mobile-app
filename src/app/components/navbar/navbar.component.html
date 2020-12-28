@@ -35,11 +35,11 @@
                 <ion-icon name="pencil-outline" class="mainMenuIcon"></ion-icon>
                 <ion-label>Mis novelas</ion-label>
             </ion-item>
-            <ion-item *ngIf="!us.userIsLoged()" (click)="toggleMenu(); presentModal(loginRegisterComponent, false)">
+            <ion-item *ngIf="!us.userIsLoged()" (click)="toggleMenu(); presentModal(false)">
                 <ion-icon name="happy-outline" class="mainMenuIcon"></ion-icon>
                 <ion-label>Iniciar Sesión</ion-label>
             </ion-item>
-            <ion-item *ngIf="!us.userIsLoged()" (click)="toggleMenu(); presentModal(loginRegisterComponent, true)">
+            <ion-item *ngIf="!us.userIsLoged()" (click)="toggleMenu(); presentModal(true)">
                 <ion-icon name="person-add-outline" class="mainMenuIcon"></ion-icon>
                 <ion-label>Registrarse</ion-label>
             </ion-item>

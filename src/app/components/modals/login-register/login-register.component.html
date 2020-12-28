@@ -2,7 +2,11 @@
     <ion-toolbar>
         <ion-title mode="md">{{title}}</ion-title>
         <div class="skn-login-logo-image"></div>
-        <ion-button (click)="dismiss()" color="primary" size="small" slot="primary">Cerrar</ion-button>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content class="noScroll">
@@ -53,7 +57,7 @@
                 </mat-form-field>
                 <div class="d-flex skn-register-form-conditions-check-container">
                     <mat-checkbox color="primary" style="margin-right: 5px;" [(ngModel)]="termsAndConditionsAccepted" [ngModelOptions]="{standalone: true}"></mat-checkbox>
-                    <p style="font-size: 0.75rem; margin: 0px;">he leído y acepto el <span class="skn-link" style="text-decoration: underline!important;">acuerdo de terminos y condiciones.</span></p>
+                    <p style="font-size: 0.75rem; margin: 0px;">he leído y acepto el <span class="skn-link" style="text-decoration: underline!important;" (click)="presentModal()">acuerdo de terminos y condiciones.</span></p>
                 </div>
 
                 <div class="text-left" style="font-size: 0.75rem;">
@@ -84,11 +88,11 @@
             </form>
         </div>
         <div class="skn-login-button" *ngIf="!loginFormLoading">
-            <ion-button color="primary" (click)="login()" *ngIf="currentForm === 'login'" [disabled]="loginForm.invalid || loginFormLoading">Iniciar sesión</ion-button>
-            <ion-button color="primary" (click)="register()" *ngIf="currentForm === 'register' && !registerCompleted" [disabled]="registerForm.invalid || loginFormLoading || !termsAndConditionsAccepted">Registrarse</ion-button>
-            <ion-button color="primary" (click)="passwordRecovery()" *ngIf="currentForm === 'passwordRecovery' && !passwordRecoveryCompleted" [disabled]="passwordRecoveryForm.invalid || loginFormLoading">Enviar correo</ion-button>
+            <ion-button color="primary" (click)="login()" *ngIf="currentForm === 'login'" [disabled]="loginForm.invalid || loginFormLoading" size="small">Iniciar sesión</ion-button>
+            <ion-button color="primary" (click)="register()" *ngIf="currentForm === 'register' && !registerCompleted" [disabled]="registerForm.invalid || loginFormLoading || !termsAndConditionsAccepted" size="small">Registrarse</ion-button>
+            <ion-button color="primary" (click)="passwordRecovery()" *ngIf="currentForm === 'passwordRecovery' && !passwordRecoveryCompleted" [disabled]="passwordRecoveryForm.invalid || loginFormLoading" size="small">Enviar correo</ion-button>
         </div>
-        <div class="skn-loading" style="height: 52.8px; margin: 0px;" *ngIf="loginFormLoading">
+        <div class="skn-loading" style="height: 35.64px;; margin: 0px;" *ngIf="loginFormLoading">
             <ion-spinner></ion-spinner>
         </div>
         <div class="skn-login-switcher">

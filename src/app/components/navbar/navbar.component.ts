@@ -11,7 +11,6 @@ import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalController } from '@ionic/angular';
-import { TermsAndConditionsComponent } from '../modals/terms-and-conditions/terms-and-conditions.component';
 import { LoginRegisterComponent } from '../modals/login-register/login-register.component';
 
 
@@ -25,7 +24,6 @@ export class NavbarComponent implements OnInit {
 
   currentComponent: string;
   themeToggled = false;
-  loginRegisterComponent = LoginRegisterComponent;
 
   constructor(private menuCtrl: MenuController,
               public alertController: AlertController,
@@ -60,9 +58,9 @@ export class NavbarComponent implements OnInit {
     toast.present();
   }
 
-  async presentModal(component, register: boolean) {
+  async presentModal(register: boolean) {
     const modal = await this.modalController.create({
-      component: component,
+      component: LoginRegisterComponent,
       componentProps: {
         'openRegisterForm': register
       }

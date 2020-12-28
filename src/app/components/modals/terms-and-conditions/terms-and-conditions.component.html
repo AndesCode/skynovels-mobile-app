@@ -1,15 +1,20 @@
 <ion-header translucent>
     <ion-toolbar>
-        <ion-buttons slot="end" *ngIf="1 +1 === 2">
-            <ion-button (click)="dismiss()">Cerrar</ion-button>
+        <div class="skn-login-logo">
+            <div class="skn-login-logo-image"></div>
+        </div>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <ion-text>
         <h2>Acuerdo de terminos y condiciones de uso de Skynovels</h2>
-        <p>
-            <!-- Texto que algún día rellenara el staff de skynovels-->
+        <p style="height: 500vh;">
+            <!-- Texto que algún día rellenara el staff de skynovels, PD: Borrar estilo style="height: 500vh;"-->
         </p>
     </ion-text>
 </ion-content>

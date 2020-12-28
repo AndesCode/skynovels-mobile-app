@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginRegisterComponent } from './components/modals/login-register/login-register.component';
+import { TermsAndConditionsComponent } from './components/modals/terms-and-conditions/terms-and-conditions.component';
 // Angular material
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,6 +37,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MarkdownModule } from 'ngx-markdown';
 
+
 const config: SwiperConfigInterface = {
   direction: 'horizontal',
   observer: true,
@@ -49,6 +51,7 @@ const config: SwiperConfigInterface = {
 
 @NgModule({
   declarations: [
+    TermsAndConditionsComponent,
     LoginRegisterComponent,
     NavbarComponent,
     HomeComponent,

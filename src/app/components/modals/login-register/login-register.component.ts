@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, ToastController } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { UsersService } from 'src/app/services/users.service';
+import { TermsAndConditionsComponent } from '../terms-and-conditions/terms-and-conditions.component';
 
 @Component({
   selector: 'app-login-register',
@@ -60,6 +61,13 @@ export class LoginRegisterComponent implements OnInit {
   swichtTab(tab: string, title: string) {
     this.title = title;
     this.currentForm = tab;
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: TermsAndConditionsComponent,
+    });
+    return await modal.present();
   }
 
   login() {

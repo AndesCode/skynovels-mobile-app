@@ -6,7 +6,6 @@ ion-content {
 }
 
 .skn-logo {
-    grid-area: logo;
     margin-top: 12px;
     margin-bottom: 2px;
     background-size: 100% 100%;
@@ -24,7 +23,7 @@ ion-content {
     max-width: 25em;
     margin: auto;
     .skn-login-logo {
-        height: 2.9em;
+        height: 2.56em;
         width: 100%;
         display: flex;
         .skn-login-logo-image {
@@ -38,7 +37,7 @@ ion-content {
         padding: 0px 5%;
     }
     .skn-login-button {
-        height: 52.8px;
+        height: 35.64px;
         text-align: center;
         ion-button {
             width: 13em;

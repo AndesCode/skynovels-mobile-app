@@ -4,3 +4,14 @@ ion-content {
     --padding-start: 10px;
     --padding-top: 10px;
 }
+
+.skn-login-logo {
+    height: 2.56em;
+    display: flex;
+    margin-left: 13px;
+    .skn-login-logo-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-size: 100% 100%;
+    }
+}

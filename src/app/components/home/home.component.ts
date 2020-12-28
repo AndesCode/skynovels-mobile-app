@@ -5,6 +5,7 @@ import { HelperService } from '../../services/helper.service';
 import { Advertisement, Novel } from '../../models/models';
 import { PageService } from '../../services/page.service';
 import { SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
@@ -50,11 +51,21 @@ export class HomeComponent implements OnInit {
     private ns: NovelsService,
     private router: Router,
     public hs: HelperService,
-    public ps: PageService
+    public ps: PageService,
+    private breakpointObserver: BreakpointObserver,
   ) {}
 
   ngOnInit() {
-    this.hs.updateBrowserMeta('description', 'Skynovels, el catálogo más extenso y completo de novelas web en español, con traducciones literarias originales. Disfruta de los títulos más destacados como Against The Gods (ATG), Tales of Demons and Gods (TDG) o A Will Eternal (AWE). Con las mejores traducciones de la web.', 'SkyNovels | ¡Asciende a Mundos Increíbles!');
+
+    this.breakpointObserver.observe('(max-width: 850px)').subscribe((state: BreakpointState) => {
+      console.log(state);
+      if (state.matches) {
+        this.mobile = true;
+      } else {
+        this.mobile = false;
+      }
+    });
+
     this.ns.getHome().subscribe((data: any) => {
         this.topNovels = data.topNovels;
         this.recentNovels = data.recentNovels;
@@ -86,10 +97,15 @@ export class HomeComponent implements OnInit {
             }
           });
         }
-        this.loading = false;
-        setTimeout(() => {
-          this.setSwiperSlidesPerView(3);
-        }, 500);
+        if (this.mobile) {
+          setTimeout(() => {
+            this.setSwiperSlidesPerView(3);
+          }, 500);
+        } else {
+          setTimeout(() => {
+            this.setSwiperSlidesPerView(4);
+          }, 500);
+        }
     }, error => {
       this.loadingError = true;
     });
@@ -102,5 +118,6 @@ export class HomeComponent implements OnInit {
   setSwiperSlidesPerView(slides: number) {
     this.swiperTopConfig.slidesPerView = slides;
     this.swiperConfigured = true;
+    this.loading = false;
   }
 }
