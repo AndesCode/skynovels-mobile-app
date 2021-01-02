@@ -1,0 +1,46 @@
+@import "../../common.scss";
+.skn-admin-panel {
+    margin: 0;
+    height: calc(100vh - 4.063rem);
+    display: flex;
+}
+
+hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.skn-admin-panel-icon {
+    font-size: 1.875rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer!important;
+}
+
+.nav-mobile-text {
+    cursor: pointer!important;
+}
+
+.material-icons {
+    color: #131E2C;
+}
+
+.skn-admin-panel-content {
+    flex: auto;
+    width: min-content;
+    padding-bottom: 15px;
+    overflow: auto;
+    @include subtract-media(desktop) {
+        padding-bottom: 3.3rem;
+    }
+}
+
+.hide-light {
+    color: #131E2C;
+}
+
+.hide-dark {
+    color: #d32f2f;
+}

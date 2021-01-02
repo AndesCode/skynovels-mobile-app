@@ -1,0 +1,24 @@
+@import "../../common.scss";
+.skn-search-box {
+    padding: 15px;
+    margin: auto;
+    .skn-search-box-genres {
+        justify-content: center;
+        display: flex;
+        color: color(primary);
+        div {
+            margin: 5px;
+        }
+    }
+}
+
+.genres-list {
+    width: 100%;
+    padding-top: 0.5rem;
+}
+
+.skn-filters {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}

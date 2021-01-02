@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { UsersManagementComponent } from './components/admin-panel/users-management/users-management.component';
+import { UserManagementComponent } from './components/admin-panel/users-management/user-management/user-management.component';
+import { NovelsManagementComponent } from './components/admin-panel/novels-management/novels-management.component';
+import { HomeManagementComponent } from './components/admin-panel/home-management/home-management.component';
+import { NovelManagementComponent } from './components/admin-panel/novels-management/novel-management/novel-management.component';
+import { ChapterManagementComponent } from './components/admin-panel/novels-management/novel-management/chapter-management/chapter-management.component';
+import { AdvertisementManagementComponent } from './components/admin-panel/home-management/advertisement-management/advertisement-management.component';
 import { ChaptersComponent } from './components/chapters/chapters.component';
 import { HomeComponent } from './components/home/home.component';
 import { NovelsComponent } from './components/novels/novels.component';
@@ -24,13 +31,12 @@ const routes: Routes = [
   { path: 'novelas/:nid/:ntitle', component: NovelComponent },
   { path: 'novelas/:nid/:ntitle/:cid', component: ChaptersComponent },
   { path: 'novelas/:nid/:ntitle/:cid/:ctitle', component: ChaptersComponent },
-  { path: '**', pathMatch: 'full', redirectTo: '' },
   // Admin panel
   {
     path: 'panel',
     component: AdminPanelComponent,
     canActivate: [GuardService],
-    /*children: [
+    children: [
       {path: 'administracion-de-usuarios', component: UsersManagementComponent},
       {path: 'administracion-de-usuarios/:id', component: UserManagementComponent},
       {path: 'administracion-de-pagina-de-inicio', component: HomeManagementComponent},
@@ -41,7 +47,7 @@ const routes: Routes = [
       {path: 'administracion-de-pagina-de-inicio/noticias/:id', component: AdvertisementManagementComponent},
       {path: '', pathMatch: 'full', redirectTo: '' },
       { path: '**', pathMatch: 'full', redirectTo: '' }
-    ]*/
+    ]
   },
   // novel edition
   { path: 'mis-novelas', component: UserNovelsComponent, canActivate: [GuardService] },
@@ -62,7 +68,9 @@ const routes: Routes = [
   // Password recovery
   { path: 'nueva-contraseña/:token', component: PasswordRecoveryComponent },
   // User activation
-  { path: 'activacion-de-usuario/:key', component: UserActivationComponent }
+  { path: 'activacion-de-usuario/:key', component: UserActivationComponent },
+  // every miss-route
+  { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
 @NgModule({

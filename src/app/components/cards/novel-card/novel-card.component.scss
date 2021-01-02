@@ -1,4 +1,4 @@
-@import "../../common.scss";
+@import "../../../common.scss";
 .skn-nvl-card {
     cursor: pointer!important;
     box-shadow: 0 1.1px 1.5px rgba(0, 0, 0, 0.123), 0 3.6px 5.7px rgba(0, 0, 0, 0.149), 0 16px 17px rgba(0, 0, 0, 0.19);
@@ -6,7 +6,7 @@
     margin: 10px 10px;
     width: 25vw;
     min-width: 480px;
-    height: 240px;
+    height: 16rem;
     display: grid;
     grid-template-columns: 145px auto;
     grid-template-rows: 85% 15%;
@@ -14,7 +14,7 @@
     @include subtract-media (desktop) {
         min-width: 300px;
         width: 30vw;
-        height: 150px;
+        height: 10.75rem;
         grid-template-columns: 85px auto;
         grid-template-rows: 80% 20%;
     }
@@ -23,6 +23,15 @@
 .skn-nvl-card:hover {
     -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.skn-novel-acronym {
+    background-color: #d32f2f;
+    border-radius: 15px;
+    padding: 1px 6px;
+    text-transform: uppercase;
+    color: black;
+    font-size: 0.65rem;
 }
 
 .skn-nvl-card-img {

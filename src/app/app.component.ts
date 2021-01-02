@@ -28,6 +28,7 @@ export class AppComponent {
   }
 
   onActivate(event: any) {
+    console.log(event.componentName);
     if (event.componentName) { 
       this.currentComponent = event.componentName;
       console.log(this.currentComponent);

@@ -1,23 +1,16 @@
-<div class="skn-loading" *ngIf="loading && !loadingError">
-    <mat-spinner></mat-spinner>
+<div class="text-center" style="margin-top: 1rem;">
+    <pagination-controls (pageChange)="page = $event" maxSize="5" previousLabel="" nextLabel="" autoHide="true" screenReaderPaginationLabel="Paginación" screenReaderPageLabel="Pagina" screenReaderCurrentLabel="Estas en la pagina"></pagination-controls>
 </div>
-<app-loading-error *ngIf="loadingError"></app-loading-error>
-<h1 *ngIf="!loading" class="skn-component-title text-center">Tu lista de lectura:</h1>
-<div class="row justify-content-center" *ngIf="!loading">
-    <div *ngIf="bookmarks.length === 0" style="margin-top: 20%;" class="text-center">
-        <h2>No tienes novelas en tu lista de lectura</h2>
-        <p>Ve al catalogo de <a class="unstyled-a-tag skn-link" style="color: #d32f2f!important" routerLink="/novelas">novelas</a> para agregar tu lista de lectura</p>
-    </div>
-
-    <div *ngFor="let novel of bookmarks">
-        <a class="skn-nvl-card unstyled-a-tag" [routerLink]="['/novelas', novel.id, novel.nvl_name]">
+<div class="row justify-content-center">
+    <div *ngFor="let novel of novels | novelFilter:novelFilter.searchName: novelFilter.searchGenres: novelFilter.searchStatus: novelFilter.orderBy | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+        <a class="skn-nvl-card unstyled-a-tag" [routerLink]="[goToNovelLink, novel.id, novel.nvl_name]">
             <div class="skn-nvl-card-img">
                 <img [src]="novel.image | noimage" alt="">
             </div>
             <ul class="skn-nvl-card-info">
                 <li>
                     <div class="skn-nvl-card-title">
-                        <strong>{{novel.nvl_title}}</strong>
+                        <strong>{{novel.nvl_title}} <span class="skn-novel-acronym" *ngIf="novel.nvl_acronym">{{novel.nvl_acronym}}</span></strong>
                     </div>
                 </li>
                 <li>
@@ -55,4 +48,7 @@
             </div>
         </a>
     </div>
+</div>
+<div class="text-center">
+    <pagination-controls (pageChange)="page = $event; scrollToTop();" maxSize="5" previousLabel="" nextLabel="" autoHide="true"></pagination-controls>
 </div>

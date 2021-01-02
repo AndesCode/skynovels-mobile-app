@@ -3,5 +3,19 @@
     <ion-content style="overflow: hidden!important;">
         <router-outlet (activate)='onActivate($event)' id="main" class="router-outlet"></router-outlet>
     </ion-content>
-
+    <ion-footer *ngIf="this.currentComponent === 'AdminPanelComponent'">
+        <ion-toolbar>
+            <ion-buttons style="justify-content: space-evenly;">
+                <ion-button routerLink="panel/administracion-de-pagina-de-inicio">
+                    <ion-icon slot="icon-only" name="home-outline" class="admin-nav-icon" routerLinkActive="admin-nav-icon-selected"></ion-icon>
+                </ion-button>
+                <ion-button routerLink="panel/administracion-de-novelas">
+                    <ion-icon slot="icon-only" name="newspaper-outline" class="admin-nav-icon" routerLinkActive="admin-nav-icon-selected"></ion-icon>
+                </ion-button>
+                <ion-button routerLink="panel/administracion-de-usuarios">
+                    <ion-icon slot="icon-only" name="people-outline" class="admin-nav-icon" routerLinkActive="admin-nav-icon-selected"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-footer>
 </ion-app>

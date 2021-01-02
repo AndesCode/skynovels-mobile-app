@@ -15,6 +15,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginRegisterComponent } from './components/modals/login-register/login-register.component';
 import { TermsAndConditionsComponent } from './components/modals/terms-and-conditions/terms-and-conditions.component';
+import { NovelsComponent } from './components/novels/novels.component';
+import { NovelCardComponent } from './components/cards/novel-card/novel-card.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { UsersManagementComponent } from './components/admin-panel/users-management/users-management.component';
+import { UserManagementComponent } from './components/admin-panel/users-management/user-management/user-management.component';
+import { NovelsManagementComponent } from './components/admin-panel/novels-management/novels-management.component';
+import { HomeManagementComponent } from './components/admin-panel/home-management/home-management.component';
+import { NovelManagementComponent } from './components/admin-panel/novels-management/novel-management/novel-management.component';
+import { ChapterManagementComponent } from './components/admin-panel/novels-management/novel-management/chapter-management/chapter-management.component';
+import { AdvertisementManagementComponent } from './components/admin-panel/home-management/advertisement-management/advertisement-management.component';
 // Angular material
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,17 +36,20 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 // Pipes
 import { NoUserImagePipe } from './pipes/no-user-image.pipe';
 import { NoimagePipe } from './pipes/noimage.pipe';
 import { NovelFilterPipe } from './pipes/novel-filter.pipe';
 import { NoAdvertisementImagePipe} from './pipes/no-advertisement-image.pipe';
-
+// Installations
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MarkdownModule } from 'ngx-markdown';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 const config: SwiperConfigInterface = {
@@ -55,7 +69,18 @@ const config: SwiperConfigInterface = {
     LoginRegisterComponent,
     NavbarComponent,
     HomeComponent,
+    NovelCardComponent,
+    NovelsComponent,
     AppComponent,
+    AdminPanelComponent,
+    BookmarksComponent,
+    UsersManagementComponent ,
+    UserManagementComponent,
+    NovelsManagementComponent,
+    HomeManagementComponent ,
+    NovelManagementComponent,
+    ChapterManagementComponent,
+    AdvertisementManagementComponent,
     // pipes
     NoimagePipe,
     NoAdvertisementImagePipe,
@@ -72,12 +97,15 @@ const config: SwiperConfigInterface = {
     ReactiveFormsModule,
     HttpClientModule,
     SwiperModule,
+    NgxPaginationModule,
     BrowserAnimationsModule,
     // Angular material
     MatFormFieldModule,
     MatInputModule,
+    MatExpansionModule,
     MatSortModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSelectModule,
