@@ -1,3 +1,12 @@
-<ion-content style="overflow: hidden!important;">
-    <router-outlet></router-outlet>
+<ion-content class="noScroll" *ngIf="loading">
+    <div class="skn-loading">
+        <ion-spinner color="primary" class="pageLoadingSpinner"></ion-spinner>
+    </div>
 </ion-content>
+
+
+<main class="skn-admin-panel" *ngIf="!loading">
+    <section class="skn-admin-panel-content skn-main">
+        <router-outlet></router-outlet>
+    </section>
+</main>

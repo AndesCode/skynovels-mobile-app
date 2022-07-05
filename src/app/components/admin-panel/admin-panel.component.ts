@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
 import { UsersService } from '../../services/users.service';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { HelperService } from '../../services/helper.service';
+import { ModalController } from '@ionic/angular';
+import { LoginRegisterComponent } from '../modals/login-register/login-register.component';
 
 @Component({
   selector: 'app-admin-panel',
@@ -21,12 +23,13 @@ export class AdminPanelComponent implements OnInit {
               public breakpointObserver: BreakpointObserver,
               private us: UsersService,
               private as: AdminService,
-              private hs: HelperService) { }
+              private hs: HelperService,
+              public modalController: ModalController,) { }
 
   ngOnInit(): void {
     this.hs.updateBrowserMeta('description', 'Panel de control de skynovels', 'SkyNovels | Panel de control');
 
-    /*this.as.adminPanelAccess(this.us.getUserLoged().token).subscribe((data: any) => {
+    this.as.adminPanelAccess(this.us.getUserLoged().token).subscribe((data: any) => {
       if (data.status === 200) {
         this.adminVerificated = true;
         this.loading = false;
@@ -34,17 +37,29 @@ export class AdminPanelComponent implements OnInit {
           this.router.navigate(['/panel/administracion-de-pagina-de-inicio']);
         }
       } else {
+        this.presentModal();
         this.router.navigate(['']);
-        this.as.adminPanelErrorHandler(null, true);
       }
     }, error => {
+      if ((error && error.status === 401)) {
+        this.presentModal();
+      }  
       this.router.navigate(['']);
-      this.as.adminPanelErrorHandler(error, false);
-    });*/
+    });
   }
 
   goToLink(link: string) {
     this.router.navigate([link]);
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: LoginRegisterComponent,
+      componentProps: {
+        'openRegisterForm': false
+      }
+    });
+    return await modal.present();
   }
 
 }

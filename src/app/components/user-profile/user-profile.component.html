@@ -1,3 +1,63 @@
-<p>
-  user-profile works!
-</p>
+<ion-content class="noScroll" *ngIf="loading">
+    <div class="skn-loading">
+        <ion-spinner color="primary" class="pageLoadingSpinner"></ion-spinner>
+    </div>
+</ion-content>
+<ion-content *ngIf="!loading">
+    <article class="container">
+        <div class="skn-secondary skn-user-profile">
+            <div class="skn-user-profile-image">
+                <img src={{this.imgURL}}>
+                <input #file type="file" accept='image/*' (change)="fileChangeEvent($event)" hidden>
+                <button type="button" mat-raised-button color="primary" class="skn-upload-image-button" (click)="file.click()" *ngIf="user?.id === userData.id">Subir imagen (.jpg)</button>
+            </div>
+            <div class="skn-user-profile-description">
+                <div class="d-flex align-items-lg-center" class="skn-user-profile-description-login">
+                    <h2>{{userData.user_login}}</h2>
+                    <button mat-mini-fab (click)="switchToEdition()" *ngIf="user?.id === userData.id && !edition"><ion-icon name="pencil-outline"></ion-icon></button>
+                    <button mat-mini-fab (click)="updateUser(userForm)" *ngIf="user?.id === userData.id && edition"><ion-icon name="checkmark-outline"></ion-icon></button>
+                </div>
+                <div>
+                    <p *ngIf="!edition">{{userData.user_description}}</p>
+                    <form #userForm="ngForm">
+                        <textarea *ngIf="user?.id === userData.id && edition" class="form-control skn-text-area" #user_description="ngModel" name="userData.user_description" [(ngModel)]="userData.user_description" rows="5"></textarea>
+                    </form>
+                </div>
+            </div>
+            <div class="skn-user-profile-stats skn-main skn-text row" style="margin-left: 0px;">
+                <div *ngIf="userData.novels.length !== 1">
+                    <ion-icon name="create-outline"></ion-icon> {{userData.novels.length}} novelas publicadas</div>
+                <div *ngIf="userData.novels.length === 1">
+                    <ion-icon name="create-outline"></ion-icon> 1 novela publicada</div>
+                <div *ngIf="userData.chapters.length !== 1">
+                    <ion-icon name="pencil-outline"></ion-icon> {{userData.chapters.length}} Capitulos publicados</div>
+                <div *ngIf="userData.chapters.length === 1">
+                    <ion-icon name="pencil-outline"></ion-icon> 1 Capitulo publicado</div>
+                <div *ngIf="userData.collaborations.length !== 1">
+                    <ion-icon name="people-outline"></ion-icon> {{userData.collaborations.length}} colaboraciones</div>
+                <div *ngIf="userData.collaborations.length === 1">
+                    <ion-icon name="people-outline"></ion-icon> 1 colaboraciones</div>
+            </div>
+        </div>
+        <section style="margin-top: 0.7rem;">
+            <ion-segment (ionChange)="segmentChanged($event.detail.value)" value="novels" style="margin-bottom: 0.7rem;">
+                <ion-segment-button value="novels">
+                    <ion-label>Novelas</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="collaborations">
+                    <ion-label>Colaboraciones</ion-label>
+                </ion-segment-button>
+            </ion-segment>
+            <div class="container" *ngIf="this.currentTab === 'novels'">
+                <section class="row" style="justify-content: center;">
+                    <app-novel-card [novels]="userData.novels" [clickRoute]="'novel'"></app-novel-card>
+                </section>
+            </div>
+            <div class="container" *ngIf="this.currentTab === 'collaborations'">
+                <section class="row" style="justify-content: center;">
+                    <app-novel-card [novels]="userData.collaborations" [clickRoute]="'novel'"></app-novel-card>
+                </section>
+            </div>
+        </section>
+    </article>
+</ion-content>

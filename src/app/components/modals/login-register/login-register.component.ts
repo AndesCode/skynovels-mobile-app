@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { UsersService } from 'src/app/services/users.service';
 import { TermsAndConditionsComponent } from '../terms-and-conditions/terms-and-conditions.component';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
   selector: 'app-login-register',
@@ -27,8 +28,8 @@ export class LoginRegisterComponent implements OnInit {
 
   constructor(public us: UsersService,
               private hs: HelperService,
-              public toastController: ToastController,
-              public modalController: ModalController,) { 
+              private ps: PageService,
+              public modalController: ModalController) { 
                 
                 this.loginForm = new FormGroup({
                   user_login: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(75)]),
@@ -83,11 +84,11 @@ export class LoginRegisterComponent implements OnInit {
         this.loginForm.reset();
         this.dismiss();
       }, error => {
-        this.presentToast('danger', error.error.message);
+        this.ps.presentToast('danger', error.error.message);
         this.loginFormLoading = false;
       });
     } else {
-      this.presentToast('danger', 'Debes escribir un usuario y contraseña');
+      this.ps.presentToast('danger', 'Debes escribir un usuario y contraseña');
       this.loginFormLoading = false;
     }
   }
@@ -100,11 +101,11 @@ export class LoginRegisterComponent implements OnInit {
         this.loginFormLoading = false;
         this.registerForm.reset();
       }, error => {
-        this.presentToast('danger', error.error.message);
+        this.ps.presentToast('danger', error.error.message);
         this.loginFormLoading = false;
       });
     } else {
-      this.presentToast('danger', 'Debes rellenar correctamente los campos');
+      this.ps.presentToast('danger', 'Debes rellenar correctamente los campos');
       this.loginFormLoading = false;
     }
   }
@@ -117,22 +118,13 @@ export class LoginRegisterComponent implements OnInit {
         this.loginFormLoading = false;
         this.passwordRecoveryForm.reset();
       }, error => {
-        this.presentToast('danger', error.error.message);
+        this.ps.presentToast('danger', error.error.message);
         this.loginFormLoading = false;
       });
     } else {
-      this.presentToast('danger', 'Debes rellenar correctamente los campos');
+      this.ps.presentToast('danger', 'Debes rellenar correctamente los campos');
       this.loginFormLoading = false;
     }
-  }
-
-  async presentToast(color: 'danger' | 'success', message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 1000,
-      color: color
-    });
-    toast.present();
   }
 
   dismiss() {

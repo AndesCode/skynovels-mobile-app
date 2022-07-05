@@ -26,6 +26,13 @@ import { HomeManagementComponent } from './components/admin-panel/home-managemen
 import { NovelManagementComponent } from './components/admin-panel/novels-management/novel-management/novel-management.component';
 import { ChapterManagementComponent } from './components/admin-panel/novels-management/novel-management/chapter-management/chapter-management.component';
 import { AdvertisementManagementComponent } from './components/admin-panel/home-management/advertisement-management/advertisement-management.component';
+import { NovelComponent } from './components/novel/novel.component';
+import { ChaptersComponent } from './components/chapters/chapters.component';
+import { LoadingErrorComponent } from './components/loading-error/loading-error.component';
+import { CommentsComponent } from './components/comments/comments.component';
+import { AdvertisementComponent } from './components/advertisement/advertisement.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 // Angular material
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -38,6 +45,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 // Pipes
 import { NoUserImagePipe } from './pipes/no-user-image.pipe';
 import { NoimagePipe } from './pipes/noimage.pipe';
@@ -69,9 +77,12 @@ const config: SwiperConfigInterface = {
     LoginRegisterComponent,
     NavbarComponent,
     HomeComponent,
+    CommentsComponent,
     NovelCardComponent,
     NovelsComponent,
+    NovelComponent,
     AppComponent,
+    UserProfileComponent,
     AdminPanelComponent,
     BookmarksComponent,
     UsersManagementComponent ,
@@ -79,8 +90,11 @@ const config: SwiperConfigInterface = {
     NovelsManagementComponent,
     HomeManagementComponent ,
     NovelManagementComponent,
+    ChaptersComponent,
     ChapterManagementComponent,
     AdvertisementManagementComponent,
+    LoadingErrorComponent,
+    AdvertisementComponent,
     // pipes
     NoimagePipe,
     NoAdvertisementImagePipe,
@@ -107,6 +121,7 @@ const config: SwiperConfigInterface = {
     MatButtonModule,
     MatButtonToggleModule,
     MatDialogModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatPaginatorModule,

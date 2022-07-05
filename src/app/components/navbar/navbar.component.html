@@ -27,9 +27,9 @@
                 <ion-icon name="star-outline" class="mainMenuIcon"></ion-icon>
                 <ion-label routerLink="lista-de-lectura" routerLinkActive="nav-link-selected">Lista de lectura</ion-label>
             </ion-item>
-            <ion-item *ngIf="us.userIsLoged()">
+            <ion-item [routerLink]="['/perfil', this.us.getUserLoged().id, this.us.getUserLoged().user_login]" (click)="toggleMenu();" *ngIf="us.userIsLoged()">
                 <ion-icon name="person-circle-outline" class="mainMenuIcon"></ion-icon>
-                <ion-label>Perfil</ion-label>
+                <ion-label [routerLink]="['/perfil', this.us.getUserLoged().id, this.us.getUserLoged().user_login]" routerLinkActive="nav-link-selected">Perfil</ion-label>
             </ion-item>
             <ion-item *ngIf="us.userIsEditor()">
                 <ion-icon name="pencil-outline" class="mainMenuIcon"></ion-icon>

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { AdminService } from '../../services/admin.service';
 import { HelperService } from '../../services/helper.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 // ionic
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';

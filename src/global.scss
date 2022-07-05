@@ -551,7 +551,19 @@ mat-expansion-panel-header {
     color: sandybrown;
 }
 
+.filled .material-icons::before {
+    content: "star";
+}
+
+.nfilled .material-icons::before {
+    content: "star_border";
+}
+
 // HTML Standard
 h1 {
     font-weight: 600!important;
+}
+
+ngb-rating {
+    outline: none;
 }

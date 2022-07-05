@@ -1,10 +1,12 @@
-import { Injectable, isDevMode, Inject  } from '@angular/core';
+import { Injectable, isDevMode, Inject, TemplateRef  } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Reply, Comment, User, Like } from '../models/models';
 import { HelperService } from './helper.service';
 import { NgForm } from '@angular/forms';
 import { Dev, Prod } from '../config/config';
 import { DOCUMENT } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,8 @@ export class PageService {
               private hs: HelperService,
               private dev: Dev,
               private prod: Prod,
+              private dialog: MatDialog,
+              public toastController: ToastController,
               @Inject(DOCUMENT) private doc) {
                 if (isDevMode()) {
                   this.urlCredentialsNovelsDb = this.dev.urlCredentialsNovelsDb;
@@ -101,7 +105,7 @@ export class PageService {
     }
   }
 
-  getReplysFunction(user: User, object: any, objectType: 'comment_id' | 'novel_rating_id') {
+  getReplysFunction(user: User, object: any, objectType: 'comment_id' | 'novel_rating_id', scrollToHTMLElement?: any) {
     if (object.replys.length > 0) {
       object.show_replys = true;
     } else {
@@ -124,8 +128,26 @@ export class PageService {
         }
         object.show_replys = true;
         object.replys.sort(this.hs.dateDataSorter);
+        if (scrollToHTMLElement) {
+          this.scrollToHTMLElement(null, scrollToHTMLElement)
+        }
       });
     }
+  }
+
+  scrollToHTMLElement(element: HTMLElement, htmlElementId: string) {
+    setTimeout(() => {
+      if (element) {
+        element.scrollIntoView();
+        return;
+      }
+      if (htmlElementId) {
+        const element = document.getElementById(htmlElementId);
+        element.scrollIntoView();
+        return;
+      }
+      return;
+    }, 1000);
   }
 
   hideReplys(element: any) {
@@ -193,6 +215,25 @@ export class PageService {
     } else {
       return;
     }
+  }
+
+  async presentToast(color: 'danger' | 'success', message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1000,
+      color: color
+    });
+    toast.present();
+  }
+
+  openDialogSheet(template: TemplateRef<any>): void {
+    this.dialog.open(template, {
+      closeOnNavigation: false
+    });
+  }
+
+  dialogCloseAll() {
+    this.dialog.closeAll();
   }
 
   createLike(like: Like) {

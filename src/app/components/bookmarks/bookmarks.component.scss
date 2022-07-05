@@ -45,12 +45,16 @@
     .skn-nvl-card-genres {
         display: inline-block;
         span {
+            word-break: break-all;
             font-size: 11px;
             padding: 1px 5px;
             margin-right: 5px;
             border: color(primary) solid 1px;
             border-radius: 15px;
             box-shadow: 3px 3px 9px -4px rgba(0, 0, 0, 0.67);
+            @include mobile {
+                font-size: 9px;
+            }
         }
     }
     .skn-nvl-card-votes {
